@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --gray-light: hsl(0deg 0% 68.04%);
+  --body-bg: hsl(0, 0%, 80%);
+  --text-color: hsl(0, 0%, 50%);
+  --form-border-color: rgb(142 142 142 / 80%);
+  --form-bg: rgba(0, 0, 255, 0.388);
+  --input-bg: rgb(195, 195, 195);
+  --input-focus-color: rgb(255, 255, 255);
+  --input-error-color: rgb(160, 0, 0);
+  /* --input-hover-color: rgb(211, 211, 211); */
+  --input-active-color: rgb(218, 218, 218);
+  --payBtn-bg: hsl(215, 63%, 63%);
+  --payBtn-hover-color: hsl(215, 71%, 56%);
+  --payBtn-active-color: hsl(215, 86%, 46%);
+  /* border */
+  --border-radius-small: 5px;
+  --border-radius-medium: 10px
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  min-width: 320px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  background-color: var(--body-bg);
+}
+
+* {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: var(--text-color);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+input {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.payment-container {
+  margin: 0 auto;
+  padding-top: 30px;
+  max-width: 530px;
+  width: 100%;
+}
