@@ -52,8 +52,9 @@
     background-size: 20% 35%;
     background-position: center right;
 
-    & + .paySystem {
+    &+.paySystem {
       position: absolute;
+      display: flex;
       top: 50%;
       right: 4%;
       transform: translateY(-50%);
@@ -82,7 +83,7 @@
 
       & .CVVInput {
         padding-right: 35%;
-        background-image: url('/src/image/card-cvv-icon.svg');
+        // background-image: url('/src/image/card-cvv-icon.svg');
         background-repeat: no-repeat;
         background-size: 35% 65%;
         background-position: right center;
@@ -95,6 +96,15 @@
         transform: translateY(-50%);
         width: 20px;
         height: 20px;
+      }
+
+      & .CVVicon {
+        position: absolute;
+        display: flex;
+        width: 25%;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5%;
       }
     }
 
@@ -127,12 +137,12 @@
     }
   }
 
-  & + .paySystems {
+  &+.paySystems {
     padding: 20px;
     display: block;
     width: 100%;
 
-    & > svg {
+    &>svg {
       width: 100%;
     }
   }

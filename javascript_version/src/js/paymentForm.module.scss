@@ -54,6 +54,7 @@
 
     & + .paySystem {
       position: absolute;
+      display: flex;
       top: 50%;
       right: 4%;
       transform: translateY(-50%);
@@ -95,6 +96,15 @@
         transform: translateY(-50%);
         width: 20px;
         height: 20px;
+      }
+
+      & .CVVicon {
+        position: absolute;
+        display: flex;
+        width: 25%;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5%;
       }
     }
 
