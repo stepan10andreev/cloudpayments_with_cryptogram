@@ -1,0 +1,160 @@
+.paymentForm {
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+  border: 1px solid var(--form-border-color);
+  border-radius: var(--border-radius-medium);
+  background-color: var(--form-bg);
+
+  & .label {
+    width: 100%;
+  }
+
+  & .input {
+    padding: 15px;
+    // max-width: 480px;
+    width: 100%;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 18px;
+    color: var(--text-color);
+    border-radius: 10px;
+    border: 3px solid var(--form-border-color);
+    border-radius: var(--border-radius-medium);
+    background-color: var(--input-bg);
+    transition: 0.3s ease-in-out;
+
+    &[data-invalid] {
+      border-color: var(--input-error-color);
+    }
+
+    &:hover,
+    &:focus {
+      outline: none;
+      background-color: var(--input-focus-color);
+    }
+
+    &:active {
+      background-color: var(--input-active-color);
+    }
+
+  }
+
+  // частные инпуты
+  & .cardNumberInput {
+    padding-right: 20%;
+    background-repeat: no-repeat;
+    background-size: 20% 35%;
+    background-position: center right;
+
+    // необходимо глобально сделать
+    &.visa {
+      background-image: url('/src/image/visa.svg');
+    }
+
+    &.mir {
+      background-image: url('/src/image/mir.svg');
+    }
+
+    &.ae {
+      background-image: url('/src/image/ae.svg');
+      background-size: 20% 70%;
+    }
+
+    &.jcb {
+      background-image: url('/src/image/jcb.svg');
+      background-size: 20% 70%;
+    }
+
+    &.mc {
+      background-image: url('/src/image/master-card.svg');
+      background-size: 20% 70%;
+    }
+
+    &.maestro {
+      background-image: url('/src/image/maestro.svg');
+      background-size: 20% 70%;
+    }
+  }
+
+  & .CVVsection {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    & .monthLabel,
+    & .yearLabel {
+      width: 25%;
+    }
+
+    & .CVVLabel {
+      position: relative;
+      width: calc(50% - 30px);
+
+      & .CVVInput {
+        padding-right: 35%;
+        background-image: url('/src/image/card-cvv-icon.svg');
+        background-repeat: no-repeat;
+        background-size: 35% 65%;
+        background-position: right center;
+      }
+
+      & .viewButton {
+        top: 50%;
+        position: absolute;
+        right: 35%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background-image: url('/src/image/password-no-view.svg');
+
+        // сдделать глобально
+        &.viewCVV {
+          background-image: url('/src/image/password-view.svg');
+        }
+      }
+    }
+
+    & .separator {
+      color: var(--black);
+      font-size: 20px;
+    }
+  }
+
+  & .button {
+    padding: 20px 10px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 18px;
+    color: var(--white);
+    background-color: var(--payBtn-bg);
+    border-radius: var(--border-radius-medium);
+    transition: 0.3s ease-in-out;
+
+    &:focus-visible,
+    &:hover {
+      background-color: var(--payBtn-hover-color);
+    }
+
+
+    &:active {
+      color: var(--gray-light);
+      background-color: var(--payBtn-active-color);
+    }
+  }
+
+  & + .paySystems {
+    padding: 20px;
+    display: block;
+    width: 100%;
+
+    & > img {
+      width: 100%;
+    }
+  }
+}
