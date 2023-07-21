@@ -14,7 +14,7 @@ export const getCryptogram = async (form) => {
     return result
   } catch (error) {
     console.log(error)
-    return error
+    // return error
   }
 };
 
