@@ -1,5 +1,5 @@
 import styles from './paymentForm.module.scss'
-import { PAY_SYSTEMS_ICON } from './js-modules/icons'
+import { PAY_SYSTEMS_ICON, CVV_ICON } from './js-modules/icons'
 
 export const renderPaymentForm = () => {
   document.querySelector('#paymentContainer').innerHTML = `
@@ -18,6 +18,7 @@ export const renderPaymentForm = () => {
         </label>
         <label class="${styles.label} ${styles.CVVLabel}">
             <input id="cvv" type="password" class="${styles.input} ${styles.CVVInput}" placeholder="CVC / CVV2" data-cp="cvv">
+            <div class="${styles.CVVicon}">${CVV_ICON}</div>
             <button type="button" id="view-button" class="${styles.viewButton} visually-hidden"></button>
         </label>
       </div>
