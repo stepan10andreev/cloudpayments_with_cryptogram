@@ -1,33 +1,42 @@
-import { AMERICAN__EXPRESS, MASTER_CARD, MAESTRO, JCB, VISA, MIR, CURRENT_YEAR} from './constants'
+import { AMERICAN__EXPRESS, MASTER_CARD, MAESTRO, JCB, VISA, MIR, CURRENT_YEAR, CURRENT_MONTH } from './constants'
 import styles from '../paymentForm.module.scss'
 
 export function validateOnBlur() {
   if (this.getAttribute('data-cp') === 'cardNumber') {
-      const newValue = this.value.replaceAll(' ', '')
-      newValue.length < 15 ?
-          this.setAttribute('data-invalid', true) :
-          this.removeAttribute('data-invalid', true)
+    const newValue = this.value.replaceAll(' ', '')
+    newValue.length < 15 ?
+      this.setAttribute('data-invalid', true) :
+      this.removeAttribute('data-invalid', true)
   }
 
   if (this.getAttribute('data-cp') === 'expDateMonth') {
-      if (this.value.length === 1) {
-        document.getElementById('month').value = document.getElementById('month').value.padStart(2, '0');
-      }
-      +this.value > 12 ?
-          this.setAttribute('data-invalid', true) :
-          this.removeAttribute('data-invalid', true)
+    if ((this.value.length === 1) && (+this.value != 0)) {
+      document.getElementById('month').value = document.getElementById('month').value.padStart(2, '0');
+    }
+
+    (+this.value > 12) || (+this.value === 0) ?
+      this.setAttribute('data-invalid', true) :
+      this.removeAttribute('data-invalid', true)
+
+    if ((+this.value < CURRENT_MONTH) && (+document.getElementById('year').value === CURRENT_YEAR)) {
+      document.getElementById('month').setAttribute('data-invalid', 'true')
+    }
   }
 
   if (this.getAttribute('data-cp') === 'expDateYear') {
-      +this.value < CURRENT_YEAR ?
-          this.setAttribute('data-invalid', true) :
-          this.removeAttribute('data-invalid')
+    +this.value < CURRENT_YEAR ?
+      this.setAttribute('data-invalid', true) :
+      this.removeAttribute('data-invalid')
+
+    if ((+this.value === CURRENT_YEAR) && (+(document.getElementById('month')).value < CURRENT_MONTH)) {
+      document.getElementById('month').setAttribute('data-invalid', 'true')
+    }
   }
 
   if (this.getAttribute('data-cp') === 'cvv') {
-      this.value.length < 3 ?
-          this.setAttribute('data-invalid', true) :
-          this.removeAttribute('data-invalid')
+    this.value.length < 3 ?
+      this.setAttribute('data-invalid', true) :
+      this.removeAttribute('data-invalid')
   }
 }
 
@@ -53,35 +62,35 @@ export function definePaySystem(input) {
 
 export function validateOnInput() {
   if (this.getAttribute('data-cp') === 'cardNumber') {
-      const newValue = this.value.replaceAll(' ', '')
-      newValue.length >= 15 && this.removeAttribute('data-invalid', true)
+    const newValue = this.value.replaceAll(' ', '')
+    newValue.length >= 15 && this.removeAttribute('data-invalid', true)
 
-      definePaySystem(this)
+    definePaySystem(this)
   }
 
   if (this.getAttribute('data-cp') === 'expDateMonth') {
-      +this.value > 12 ?
-          this.setAttribute('data-invalid', true) :
-          this.removeAttribute('data-invalid', true)
+    (+this.value > 12) ?
+      this.setAttribute('data-invalid', true) :
+      this.removeAttribute('data-invalid', true)
   }
 
   if (this.getAttribute('data-cp') === 'expDateYear') {
-      +this.value < CURRENT_YEAR ?
-          this.setAttribute('data-invalid', true) :
-          this.removeAttribute('data-invalid')
+    +this.value < CURRENT_YEAR ?
+      this.setAttribute('data-invalid', true) :
+      this.removeAttribute('data-invalid')
   }
 
   if (this.getAttribute('data-cp') === 'cvv') {
-      // валидация если символов меньше 3 - можно убрать, так как при вводе первого символа будет сразу показывать ошибку
-      // this.value.length < 3 ?
-      //     this.setAttribute('data-invalid', true) :
-      //     this.removeAttribute('data-invalid')
-       this.value.length === 3 &&this.removeAttribute('data-invalid')
+    // валидация если символов меньше 3 - можно убрать, так как при вводе первого символа будет сразу показывать ошибку
+    // this.value.length < 3 ?
+    //     this.setAttribute('data-invalid', true) :
+    //     this.removeAttribute('data-invalid')
+    this.value.length === 3 && this.removeAttribute('data-invalid')
 
-      if (this.value.length > 0) {
-        document.getElementById('view-button').classList.remove('visually-hidden')
-      } else {
-        document.getElementById('view-button').classList.add('visually-hidden')
-      }
+    if (this.value.length > 0) {
+      document.getElementById('view-button').classList.remove('visually-hidden')
+    } else {
+      document.getElementById('view-button').classList.add('visually-hidden')
+    }
   }
 }
