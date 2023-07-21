@@ -59,3 +59,4 @@ npm run build
 
 - для этого на странице должен быть `HTMLElement` c `id`: `paymentContainer`, куда необходимо встроить форму оплаты.
 
+[Как выглядит форма](https://stepan10andreev.github.io/cloudpayments_with_cryptogram/)
