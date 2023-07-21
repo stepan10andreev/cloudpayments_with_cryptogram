@@ -11,6 +11,7 @@
   background-color: var(--form-bg);
 
   & .label {
+    position: relative;
     width: 100%;
   }
 
@@ -51,33 +52,12 @@
     background-size: 20% 35%;
     background-position: center right;
 
-    // необходимо глобально сделать
-    &.visa {
-      background-image: url('/src/image/visa.svg');
-    }
-
-    &.mir {
-      background-image: url('/src/image/mir.svg');
-    }
-
-    &.ae {
-      background-image: url('/src/image/ae.svg');
-      background-size: 20% 70%;
-    }
-
-    &.jcb {
-      background-image: url('/src/image/jcb.svg');
-      background-size: 20% 70%;
-    }
-
-    &.mc {
-      background-image: url('/src/image/master-card.svg');
-      background-size: 20% 70%;
-    }
-
-    &.maestro {
-      background-image: url('/src/image/maestro.svg');
-      background-size: 20% 70%;
+    & + .paySystem {
+      position: absolute;
+      top: 50%;
+      right: 4%;
+      transform: translateY(-50%);
+      width: 9%;
     }
   }
 
@@ -88,12 +68,17 @@
 
     & .monthLabel,
     & .yearLabel {
-      width: 25%;
+      width: 20%;
+    }
+
+    & .monthInput,
+    & .yearInput {
+      text-align: center;
     }
 
     & .CVVLabel {
       position: relative;
-      width: calc(50% - 30px);
+      width: calc(60% - 45px);
 
       & .CVVInput {
         padding-right: 35%;
@@ -110,12 +95,6 @@
         transform: translateY(-50%);
         width: 20px;
         height: 20px;
-        background-image: url('/src/image/password-no-view.svg');
-
-        // сдделать глобально
-        &.viewCVV {
-          background-image: url('/src/image/password-view.svg');
-        }
       }
     }
 
@@ -153,7 +132,7 @@
     display: block;
     width: 100%;
 
-    & > img {
+    & > svg {
       width: 100%;
     }
   }

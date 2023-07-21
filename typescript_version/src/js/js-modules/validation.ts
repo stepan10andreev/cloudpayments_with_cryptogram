@@ -1,5 +1,5 @@
 import { AMERICAN__EXPRESS, MASTER_CARD, MAESTRO, JCB, VISA, MIR, CURRENT_YEAR, CURRENT_MONTH } from './constants'
-import styles from '../paymentForm.module.scss'
+import { VIEW_BTN_ICON, NO_VIEW_BTN_ICON, AMERICAN_EXPRESS_ICON, JCB_ICON, MIR_ICON, VISA_ICON, MASTER_CARD_ICON, MAESTRO_ICON } from './icons'
 
 export function validateOnBlur(this: HTMLInputElement) {
   if (this.getAttribute('data-cp') === 'cardNumber') {
@@ -52,13 +52,15 @@ export function validateOnBlur(this: HTMLInputElement) {
 
 export function definePaySystem(input: HTMLInputElement) {
   const value = input.value.replaceAll(' ', '')
+  const PAY_SYSTEM = document.getElementById('pay-system') as HTMLButtonElement
 
-  AMERICAN__EXPRESS.test(value) ? input.classList.add(`${styles.ae}`) : input.classList.remove(`${styles.ae}`)
-  JCB.test(value) ? input.classList.add(`${styles.jcb}`) : input.classList.remove(`${styles.jcb}`)
-  MAESTRO.test(value) ? input.classList.add(`${styles.maestro}`) : input.classList.remove(`${styles.maestro}`)
-  MASTER_CARD.test(value) ? input.classList.add(`${styles.mc}`) : input.classList.remove(`${styles.mc}`)
-  MIR.test(value) ? input.classList.add(`${styles.mir}`) : input.classList.remove(`${styles.mir}`)
-  VISA.test(value) ? input.classList.add(`${styles.visa}`) : input.classList.remove(`${styles.visa}`)
+  AMERICAN__EXPRESS.test(value) ? PAY_SYSTEM.innerHTML = AMERICAN_EXPRESS_ICON :
+  JCB.test(value) ? PAY_SYSTEM.innerHTML = JCB_ICON :
+  MAESTRO.test(value) ? PAY_SYSTEM.innerHTML = MAESTRO_ICON :
+  MASTER_CARD.test(value) ? PAY_SYSTEM.innerHTML = MASTER_CARD_ICON :
+  MIR.test(value) ? PAY_SYSTEM.innerHTML = MIR_ICON :
+  VISA.test(value) ? PAY_SYSTEM.innerHTML = VISA_ICON :
+  PAY_SYSTEM.innerHTML = '';
 }
 
 export function validateOnInput(this: HTMLInputElement) {
@@ -82,16 +84,16 @@ export function validateOnInput(this: HTMLInputElement) {
   }
 
   if (this.getAttribute('data-cp') === 'cvv') {
-    // валидация если символов меньше 3 - можно убрать, так как при вводе первого символа будет сразу показывать ошибку
-    // this.value.length < 3 ?
-    //     this.setAttribute('data-invalid', true) :
-    //     this.removeAttribute('data-invalid')
+    const VIEW_BTN = document.getElementById('view-button') as HTMLButtonElement
     this.value.length === 3 && this.removeAttribute('data-invalid')
 
     if (this.value.length > 0) {
-      (document.getElementById('view-button') as HTMLButtonElement).classList.remove('visually-hidden')
+      VIEW_BTN.classList.remove('visually-hidden')
+      VIEW_BTN.innerHTML = VIEW_BTN_ICON
+
     } else {
-      (document.getElementById('view-button') as HTMLButtonElement).classList.add('visually-hidden')
+      VIEW_BTN.classList.add('visually-hidden')
+      VIEW_BTN.innerHTML = NO_VIEW_BTN_ICON
     }
   }
 }
